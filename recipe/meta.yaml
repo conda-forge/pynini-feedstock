@@ -1,5 +1,5 @@
 {% set name = "pynini" %}
-{% set version = "2.0.9.post2" %}
+{% set version = "2.1.0" %}
 
 package: 
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: http://www.opengrm.org/twiki/pub/GRM/PyniniDownload/{{ name }}-{{ version }}.tar.gz
-  sha256: 6da376d0d945ec0324b386eb729359c9f0f8e2d8ffa7536c2d23f6d43fb2e3fb
+  sha256: 18e1ffe592a1b90937a470689acf13b7a9af002479734134c94bf9b22e3175f7
   
 build:
   number: 0
@@ -18,12 +18,12 @@ requirements:
   build:
     - {{ compiler('cxx') }}
   host:
-    - openfst ==1.7.5
+    - openfst ==1.7.6
     - pip
     - python
   run:
     - python
-    - openfst ==1.7.5
+    - openfst ==1.7.6
 
 test:
    imports:
