@@ -20,9 +20,9 @@ requirements:
   host:
     - openfst ==1.7.6
     - pip
-    - python >=3
+    - python
   run:
-    - python >=3
+    - python
     - openfst ==1.7.6
 
 test:
