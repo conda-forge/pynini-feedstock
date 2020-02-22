@@ -21,9 +21,9 @@ requirements:
     - cython >=0.29
     - openfst ==1.7.6
     - pip
-    - python
+    - python >=3
   run:
-    - python
+    - python >=3
     - openfst ==1.7.6
 
 test:
