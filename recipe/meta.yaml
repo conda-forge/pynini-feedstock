@@ -1,5 +1,5 @@
 {% set name = "pynini" %}
-{% set version = "2.1.0" %}
+{% set version = "2.1.1" %}
 
 package: 
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: http://www.opengrm.org/twiki/pub/GRM/PyniniDownload/{{ name }}-{{ version }}.tar.gz
-  sha256: 18e1ffe592a1b90937a470689acf13b7a9af002479734134c94bf9b22e3175f7
+  sha256: 5ba68459372a0ab2acbcb858ddde4604b7acec6edd68e5d926edb614913d13b0
   
 build:
-  number: 3
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   skip: true  # [win or py<36]
 
@@ -19,13 +19,13 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - cython >=0.29
-    - openfst ==1.7.6
+    - openfst ==1.7.7
     - pip
     - python
   run:
     - graphviz
     - python
-    - openfst ==1.7.6
+    - openfst ==1.7.7
 
 test:
    imports:
