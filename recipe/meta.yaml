@@ -19,13 +19,13 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - cython >=0.29
-    - openfst ==1.7.7
+    - openfst ==1.7.9
     - pip
     - python
   run:
     - graphviz
     - python
-    - openfst ==1.7.7
+    - openfst ==1.7.9
 
 test:
   imports:
