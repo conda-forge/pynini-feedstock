@@ -7,7 +7,7 @@ package:
 
 source:
   url: http://www.opengrm.org/twiki/pub/GRM/PyniniDownload/{{ name }}-{{ version }}.tar.gz
-  sha256: 83483a3e2625a7cd485c143c88ed490db6f5a7336613e0598f995ae5e237c2ec
+  sha256: b789f438cdf33a2c82ddd2c10f113dd1116b28d81d5ae516e3f79f5890a19ddd
 
 build:
   number: 0
@@ -29,6 +29,7 @@ requirements:
 
 test:
   imports:
+    - pywrapfst
     - pynini
 
 about:
