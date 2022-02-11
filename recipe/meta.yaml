@@ -10,8 +10,10 @@ source:
   sha256: f967b78a79f688ef8469f0da476799dbb005c817b4f0c164ee5f2ae99deed393
 
 build:
-  number: 0
-  script: CFLAGS="${CFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 1
+  script_env:
+    - CFLAGS="${CFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"  # [osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   skip: true  # [win or py<36]
 
 requirements:
