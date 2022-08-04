@@ -1,19 +1,45 @@
-From 26b3f4ef3e8c8672e880a09bf474bac5b8cebf80 Mon Sep 17 00:00:00 2001
+From d7cef1f38e437674226e2c10638e132f17bff872 Mon Sep 17 00:00:00 2001
 From: Michael McAuliffe <michael.e.mcauliffe@gmail.com>
 Date: Sat, 23 Jul 2022 23:48:45 -0700
 Subject: [PATCH] Add Windows build
 
 ---
+ .gitattributes         | 18 ++++++++++++++
  extensions/cdrewrite.h | 54 +++++++++++++++++++++---------------------
  extensions/cpynini.pxd |  4 ++--
  extensions/getters.cc  | 10 ++++----
  setup.py               | 32 ++++++++++++++++++++-----
- 4 files changed, 60 insertions(+), 40 deletions(-)
+ 5 files changed, 78 insertions(+), 40 deletions(-)
+ create mode 100644 .gitattributes
 
-diff --git extensions/cdrewrite.h extensions/cdrewrite.h
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000..02a8638
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,18 @@
++*.php text
++        *.css text
++        *.js text
++        *.json text
++        *.htm text
++        *.html text
++        *.xml text
++        *.txt text
++        *.pyx text
++        *.inc text
++        *.cpp text
++        *.pxd text
++        *.in text
++        *.am text
++        *.sh text
++        *.h text
++        *.cc text
++
+diff --git a/extensions/cdrewrite.h b/extensions/cdrewrite.h
 index 0322f1e..ee094d3 100644
---- extensions/cdrewrite.h
-+++ extensions/cdrewrite.h
+--- a/extensions/cdrewrite.h
++++ b/extensions/cdrewrite.h
 @@ -49,9 +49,9 @@
  
  namespace fst {
@@ -195,10 +221,10 @@ index 0322f1e..ee094d3 100644
                        typename Arc::Label initial_boundary_marker = kNoLabel,
                        typename Arc::Label final_boundary_marker = kNoLabel) {
    VectorFst<Arc> phi(tau);
-diff --git extensions/cpynini.pxd extensions/cpynini.pxd
+diff --git a/extensions/cpynini.pxd b/extensions/cpynini.pxd
 index 9b0dfeb..d530965 100644
---- extensions/cpynini.pxd
-+++ extensions/cpynini.pxd
+--- a/extensions/cpynini.pxd
++++ b/extensions/cpynini.pxd
 @@ -178,8 +178,8 @@ cdef extern from "cdrewrite.h" \
      SIMULTANEOUS
  
@@ -210,10 +236,10 @@ index 9b0dfeb..d530965 100644
  
  
  cdef extern from "cdrewritescript.h" \
-diff --git extensions/getters.cc extensions/getters.cc
+diff --git a/extensions/getters.cc b/extensions/getters.cc
 index 14703f9..5aa5483 100644
---- extensions/getters.cc
-+++ extensions/getters.cc
+--- a/extensions/getters.cc
++++ b/extensions/getters.cc
 @@ -21,11 +21,11 @@ namespace script {
  
  bool GetCDRewriteDirection(std::string_view str, CDRewriteDirection *rd) {
@@ -241,10 +267,10 @@ index 14703f9..5aa5483 100644
    } else {
      return false;
    }
-diff --git setup.py setup.py
-index 2b4525a..8232b16 100644
---- setup.py
-+++ setup.py
+diff --git a/setup.py b/setup.py
+index 2b4525a..2a35b80 100644
+--- a/setup.py
++++ b/setup.py
 @@ -26,19 +26,39 @@ from setuptools import setup
  
  
@@ -287,7 +313,7 @@ index 2b4525a..8232b16 100644
  
  
 -LIBRARIES = ["fstfarscript", "fstfar", "fstscript", "fst", "m", "dl"]
-+LIBRARIES = ["fstfarscript", "fstfar", "fstscript", "fstscriptutils", "fst", "dl"]
++LIBRARIES = ["fstfarscript", "fstfar", "fstscript", "fst", "dl"]
  
  
  pywrapfst = Extension(
