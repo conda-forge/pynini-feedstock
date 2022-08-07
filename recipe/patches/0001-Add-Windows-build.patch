@@ -1,41 +1,15 @@
-From d7cef1f38e437674226e2c10638e132f17bff872 Mon Sep 17 00:00:00 2001
+From aaecfc7cca14798f72dc16ccae1cbf1c66ebb6e2 Mon Sep 17 00:00:00 2001
 From: Michael McAuliffe <michael.e.mcauliffe@gmail.com>
-Date: Sat, 23 Jul 2022 23:48:45 -0700
-Subject: [PATCH] Add Windows build
+Date: Sun, 7 Aug 2022 12:29:52 -0700
+Subject: [PATCH] Windows build
 
 ---
- .gitattributes         | 18 ++++++++++++++
  extensions/cdrewrite.h | 54 +++++++++++++++++++++---------------------
  extensions/cpynini.pxd |  4 ++--
  extensions/getters.cc  | 10 ++++----
  setup.py               | 32 ++++++++++++++++++++-----
- 5 files changed, 78 insertions(+), 40 deletions(-)
- create mode 100644 .gitattributes
+ 4 files changed, 60 insertions(+), 40 deletions(-)
 
-diff --git a/.gitattributes b/.gitattributes
-new file mode 100644
-index 0000000..02a8638
---- /dev/null
-+++ b/.gitattributes
-@@ -0,0 +1,18 @@
-+*.php text
-+        *.css text
-+        *.js text
-+        *.json text
-+        *.htm text
-+        *.html text
-+        *.xml text
-+        *.txt text
-+        *.pyx text
-+        *.inc text
-+        *.cpp text
-+        *.pxd text
-+        *.in text
-+        *.am text
-+        *.sh text
-+        *.h text
-+        *.cc text
-+
 diff --git a/extensions/cdrewrite.h b/extensions/cdrewrite.h
 index 0322f1e..ee094d3 100644
 --- a/extensions/cdrewrite.h
@@ -318,5 +292,5 @@ index 2b4525a..2a35b80 100644
  
  pywrapfst = Extension(
 -- 
-2.35.3
+2.37.1
 
