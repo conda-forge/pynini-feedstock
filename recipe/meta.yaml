@@ -12,7 +12,7 @@ source:
     - patches/0001-Add-Windows-build.patch  # [win]
 
 build:
-  number: 3
+  number: 4
   script: CFLAGS="${CFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" {{ PYTHON }} -m pip install . --no-deps -vv   # [not win]
   skip: true                                                                                              # [py<36]
 
