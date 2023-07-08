@@ -10,10 +10,10 @@ source:
   sha256: f967b78a79f688ef8469f0da476799dbb005c817b4f0c164ee5f2ae99deed393
   patches:
     - patches/0001-Add-Windows-build.patch  # [win]
+    - patches/0002-Add-API-declarations.patch
 
 build:
-  number: 4
-  script: CFLAGS="${CFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" {{ PYTHON }} -m pip install . --no-deps -vv   # [not win]
+  number: 5
   skip: true                                                                                              # [py<36]
 
 requirements:
