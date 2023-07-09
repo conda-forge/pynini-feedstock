@@ -1,0 +1,182 @@
+diff --git a/extensions/_pywrapfst.pxd b/extensions/_pywrapfst.pxd
+index f5f402b..79dc7ae 100644
+--- a/extensions/_pywrapfst.pxd
++++ b/extensions/_pywrapfst.pxd
+@@ -69,7 +69,7 @@ cdef fst.WeightClass _get_WeightClass_or_zero(const string &weight_type,
+                                               weight_string) except *
+ 
+ 
+-cdef class Weight:
++cdef public class Weight[object WeightStruct, type WeightType]:
+ 
+   cdef unique_ptr[fst.WeightClass] _weight
+ 
+@@ -105,7 +105,7 @@ ctypedef fst.SymbolTable * SymbolTable_ptr
+ ctypedef const fst.SymbolTable * const_SymbolTable_ptr
+ 
+ 
+-cdef class SymbolTableView:
++cdef public class SymbolTableView[object SymbolTableViewStruct, type SymbolTableViewType]:
+ 
+   cdef const fst.SymbolTable *_raw(self)
+ 
+@@ -136,7 +136,7 @@ cdef class SymbolTableView:
+   cpdef bytes write_to_string(self)
+ 
+ 
+-cdef class _EncodeMapperSymbolTableView(SymbolTableView):
++cdef public class _EncodeMapperSymbolTableView(SymbolTableView)[object _EncodeMapperSymbolTableViewStruct, type _EncodeMapperSymbolTableViewType]:
+ 
+   # Indicates whether this view is of an input or output SymbolTable
+   cdef bool _input_side
+@@ -144,7 +144,7 @@ cdef class _EncodeMapperSymbolTableView(SymbolTableView):
+   cdef shared_ptr[fst.EncodeMapperClass] _mapper
+ 
+ 
+-cdef class _FstSymbolTableView(SymbolTableView):
++cdef public class _FstSymbolTableView(SymbolTableView)[object _FstSymbolTableViewStruct, type _FstSymbolTableViewType]:
+ 
+   # Indicates whether this view is of an input or output SymbolTable
+   cdef bool _input_side
+@@ -152,7 +152,7 @@ cdef class _FstSymbolTableView(SymbolTableView):
+   cdef shared_ptr[fst.FstClass] _fst
+ 
+ 
+-cdef class _MutableSymbolTable(SymbolTableView):
++cdef public class _MutableSymbolTable(SymbolTableView)[object _MutableSymbolTableStruct, type _MutableSymbolTableType]:
+ 
+   cdef fst.SymbolTable *_mutable_raw(self)
+ 
+@@ -165,7 +165,7 @@ cdef class _MutableSymbolTable(SymbolTableView):
+   cpdef void set_name(self, new_name) except *
+ 
+ 
+-cdef class _MutableFstSymbolTableView(_MutableSymbolTable):
++cdef public class _MutableFstSymbolTableView(_MutableSymbolTable)[object _MutableFstSymbolTableViewStruct, type _MutableFstSymbolTableViewType]:
+ 
+   # Indicates whether this view is of an input or output SymbolTable
+   cdef bool _input_side
+@@ -173,7 +173,7 @@ cdef class _MutableFstSymbolTableView(_MutableSymbolTable):
+   cdef shared_ptr[fst.MutableFstClass] _mfst
+ 
+ 
+-cdef class SymbolTable(_MutableSymbolTable):
++cdef public class SymbolTable(_MutableSymbolTable)[object SymbolTableStruct, type SymbolTableType]:
+ 
+   cdef unique_ptr[fst.SymbolTable] _smart_table
+ 
+@@ -190,13 +190,13 @@ cdef _MutableFstSymbolTableView _init_MutableFstSymbolTableView(
+     shared_ptr[fst.MutableFstClass] ifst, bool input_side)
+ 
+ 
+-cdef SymbolTable _init_SymbolTable(unique_ptr[fst.SymbolTable] table)
++cdef public SymbolTable _init_SymbolTable(unique_ptr[fst.SymbolTable] table)
+ 
+ 
+ cpdef SymbolTable _read_SymbolTable_from_string(string state)
+ 
+ 
+-cdef class _SymbolTableIterator:
++cdef public class _SymbolTableIterator[object _SymbolTableIteratorStruct, type _SymbolTableIteratorType]:
+ 
+   cdef SymbolTableView _table
+   cdef unique_ptr[fst.SymbolTableIterator] _siter
+@@ -208,7 +208,7 @@ cdef class _SymbolTableIterator:
+ ctypedef fst.EncodeMapperClass * EncodeMapperClass_ptr
+ 
+ 
+-cdef class EncodeMapper:
++cdef public class EncodeMapper[object EncodeMapperStruct, type EncodeMapperType]:
+ 
+   cdef shared_ptr[fst.EncodeMapperClass] _mapper
+ 
+@@ -245,7 +245,7 @@ ctypedef fst.MutableFstClass * MutableFstClass_ptr
+ ctypedef fst.VectorFstClass * VectorFstClass_ptr
+ 
+ 
+-cdef class Fst:
++cdef public class Fst[object FstStruct, type FstType]:
+ 
+   cdef shared_ptr[fst.FstClass] _fst
+ 
+@@ -311,7 +311,7 @@ cdef class Fst:
+   cpdef bytes write_to_string(self)
+ 
+ 
+-cdef class MutableFst(Fst):
++cdef public class MutableFst(Fst)[object MutableFstStruct, type MutableFstType]:
+ 
+   cdef shared_ptr[fst.MutableFstClass] _mfst
+ 
+@@ -392,7 +392,7 @@ cdef class MutableFst(Fst):
+   cdef void _topsort(self)
+ 
+ 
+-cdef class VectorFst(MutableFst):
++cdef public class VectorFst(MutableFst)[object VectorFstStruct, type VectorFstType]:
+ 
+     pass
+ 
+@@ -414,7 +414,7 @@ cpdef Fst _read_Fst_from_string(string state)
+ # Iterators.
+ 
+ 
+-cdef class Arc:
++cdef public class Arc[object ArcStruct, type ArcType]:
+ 
+   cdef unique_ptr[fst.ArcClass] _arc
+ 
+@@ -424,7 +424,7 @@ cdef class Arc:
+ cdef Arc _init_Arc(const fst.ArcClass &arc)
+ 
+ 
+-cdef class _ArcIterator:
++cdef public class _ArcIterator[object _ArcIteratorStruct, type _ArcIteratorType]:
+ 
+   cdef shared_ptr[fst.FstClass] _fst
+   cdef unique_ptr[fst.ArcIteratorClass] _aiter
+@@ -446,7 +446,7 @@ cdef class _ArcIterator:
+   cdef Arc _value(self)
+ 
+ 
+-cdef class _MutableArcIterator:
++cdef public class _MutableArcIterator[object _MutableArcIteratorStruct, type _MutableArcIteratorType]:
+ 
+   cdef shared_ptr[fst.MutableFstClass] _mfst
+   cdef unique_ptr[fst.MutableArcIteratorClass] _aiter
+@@ -470,7 +470,7 @@ cdef class _MutableArcIterator:
+   cdef Arc _value(self)
+ 
+ 
+-cdef class _StateIterator:
++cdef public class _StateIterator[object _StateIteratorStruct, type _StateIteratorType]:
+ 
+   cdef shared_ptr[fst.FstClass] _fst
+   cdef unique_ptr[fst.StateIteratorClass] _siter
+@@ -592,7 +592,7 @@ cpdef MutableFst synchronize(Fst ifst)
+ # Compiler.
+ 
+ 
+-cdef class Compiler:
++cdef public class Compiler[object CompilerStruct, type CompilerType]:
+ 
+   cdef unique_ptr[stringstream] _sstrm
+   cdef string _fst_type
+@@ -613,7 +613,7 @@ cdef class Compiler:
+ 
+ # FarReader.
+ 
+-cdef class FarReader:
++cdef public class FarReader[object FarReaderStruct, type FarReaderType]:
+ 
+   cdef unique_ptr[fst.FarReaderClass] _reader
+ 
+@@ -638,7 +638,7 @@ cdef class FarReader:
+ 
+ # FarWriter.
+ 
+-cdef class FarWriter:
++cdef public class FarWriter[object FarWriterStruct, type FarWriterType]:
+ 
+   cdef unique_ptr[fst.FarWriterClass] _writer
+ 
