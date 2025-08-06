@@ -11,10 +11,10 @@ source:
   patches:
     - patches/0001-Add-Windows-build.patch  # [win]
     - patches/0002-Add-API-declarations.patch
+    - patches/0003-OpenFst-184-compatibility.patch
 
 build:
   number: 3
-  skip: true  # [py<38]
 
 requirements:
   build:
