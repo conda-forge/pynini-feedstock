@@ -11,10 +11,10 @@ source:
   patches:
     - patches/0001-Add-Windows-build.patch  # [win]
     - patches/0002-Add-API-declarations.patch
+    - patches/0003-OpenFst-184-compatibility.patch
 
 build:
-  number: 2
-  skip: true  # [py<38]
+  number: 3
 
 requirements:
   build:
@@ -27,7 +27,7 @@ requirements:
     - m2-patch                                # [win]
   host:
     - cython >=3.0.6
-    - openfst ==1.8.3
+    - openfst ==1.8.4
     - pip
     - python
     - setuptools
@@ -35,7 +35,7 @@ requirements:
   run:
     - graphviz
     - python
-    - openfst ==1.8.3
+    - openfst ==1.8.4
     - ucrt                                    # [win]
 
 test:
