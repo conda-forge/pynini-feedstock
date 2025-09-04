@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: http://www.opengrm.org/twiki/pub/GRM/PyniniDownload/{{ name }}-{{ version }}.tar.gz
+  url: https://www.opengrm.org/twiki/pub/GRM/PyniniDownload/{{ name }}-{{ version }}.tar.gz
   sha256: a2df40e21a6dd66c4bc1f7ecdfd72d85758ec394bf0d042fe0f3dd0d5378b820
   patches:
     - patches/0001-Add-Windows-build.patch  # [win]
