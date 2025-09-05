@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://www.opengrm.org/twiki/pub/GRM/PyniniDownload/{{ name }}-{{ version }}.tar.gz
-  sha256: a2df40e21a6dd66c4bc1f7ecdfd72d85758ec394bf0d042fe0f3dd0d5378b820
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: fc06cc02adcbd4b14eb94ae9f2a0949d110612d2d4ee3a7ac5dc97b45fff8e33
   patches:
     - patches/0001-Add-Windows-build.patch  # [win]
     - patches/0002-Add-API-declarations.patch
