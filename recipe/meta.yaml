@@ -1,20 +1,19 @@
 {% set name = "pynini" %}
-{% set version = "2.1.6.post1" %}
+{% set version = "2.1.7" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: http://www.opengrm.org/twiki/pub/GRM/PyniniDownload/{{ name }}-{{ version }}.tar.gz
-  sha256: d831ab53abb22c862fb56471b12edf26e77d2b02d1956f45f0259e6402493084
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: fc06cc02adcbd4b14eb94ae9f2a0949d110612d2d4ee3a7ac5dc97b45fff8e33
   patches:
     - patches/0001-Add-Windows-build.patch  # [win]
     - patches/0002-Add-API-declarations.patch
-    - patches/0003-OpenFst-184-compatibility.patch
 
 build:
-  number: 4
+  number: 0
 
 requirements:
   build:
